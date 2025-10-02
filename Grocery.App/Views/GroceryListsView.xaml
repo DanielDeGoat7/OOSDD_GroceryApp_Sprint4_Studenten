@@ -14,7 +14,7 @@
 
     <ContentPage.ToolbarItems>
         <ToolbarItem 
-            Text="{Binding Client.Name}" 
+            Text="{Binding ClientName}" 
             Command="{Binding ShowBoughtProductsCommand}" />
     </ContentPage.ToolbarItems>
 
