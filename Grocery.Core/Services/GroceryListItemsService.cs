@@ -8,11 +8,13 @@ namespace Grocery.Core.Services
     {
         private readonly IGroceryListItemsRepository _groceriesRepository;
         private readonly IProductRepository _productRepository;
+        private readonly BestSellingProductsCalculator _bestSellingProductsCalculator;
 
         public GroceryListItemsService(IGroceryListItemsRepository groceriesRepository, IProductRepository productRepository)
         {
             _groceriesRepository = groceriesRepository;
             _productRepository = productRepository;
+            _bestSellingProductsCalculator = new BestSellingProductsCalculator();
         }
 
         public List<GroceryListItem> GetAll()
@@ -51,7 +53,9 @@ namespace Grocery.Core.Services
 
         public List<BestSellingProducts> GetBestSellingProducts(int topX = 5)
         {
-            throw new NotImplementedException();
+            var alleItems = _groceriesRepository.GetAll();
+            var alleProducten = _productRepository.GetAll();
+            return _bestSellingProductsCalculator.Bereken(alleItems, alleProducten, topX);
         }
 
         private void FillService(List<GroceryListItem> groceryListItems)
