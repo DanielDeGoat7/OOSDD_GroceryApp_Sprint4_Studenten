@@ -11,7 +11,7 @@ namespace Grocery.App.ViewModels
         public ObservableCollection<GroceryList> GroceryLists { get; set; }
         private readonly IGroceryListService _groceryListService;
 
-        public Client CurrentClient { get; set; }
+        public Client Client { get; set; }
 
         public GroceryListViewModel(IGroceryListService groceryListService) 
         {
@@ -41,7 +41,7 @@ namespace Grocery.App.ViewModels
         [RelayCommand]
         public async Task ShowBoughtProducts()
         {
-            if (CurrentClient?.Role == Role.Admin)
+            if (Client?.Role == Role.Admin)
             {
                 await Shell.Current.GoToAsync(nameof(Views.BoughtProductsView));
             }
